@@ -19,7 +19,7 @@ class FiguresController < ApplicationController
     end
 
     if !params["title"].empty?
-      @figure.titles << Title.new(params["title"])
+      @figure.titles << Title.find_or_create_by(params["title"])
     end
 
 
@@ -30,7 +30,7 @@ class FiguresController < ApplicationController
     end
 
     if !params["landmark"].empty?
-      @figure.landmarks << Landmark.new(params["landmark"])
+      @figure.landmarks << Landmark.find_or_create_by(params["landmark"])
     end
     @figure.save
 
@@ -62,7 +62,7 @@ class FiguresController < ApplicationController
     end
 
     if !params["title"].empty?
-      @figure.titles << Title.new(params["title"])
+      @figure.titles << Title.find_or_create_by(params["title"])
     end
 
 
@@ -73,7 +73,7 @@ class FiguresController < ApplicationController
     end
 
     if !params["landmark"].empty?
-      @figure.landmarks << Landmark.new(params["landmark"])
+      @figure.landmarks << Landmark.find_or_create_by(params["landmark"])
     end
 
     @figure.save

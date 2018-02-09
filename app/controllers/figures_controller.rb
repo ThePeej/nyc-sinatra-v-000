@@ -18,8 +18,8 @@ class FiguresController < ApplicationController
       end
     end
 
-    if !params["title"].empty?
-      @figure.titles << Title.new(params["title"])
+    if !params["title"]["name"].empty?
+      @figure.titles << Title.find_or_create_by(params["title"])
     end
 
 
@@ -29,8 +29,8 @@ class FiguresController < ApplicationController
       end
     end
 
-    if !params["landmark"].empty?
-      @figure.landmarks << Landmark.new(params["landmark"])
+    if !params["landmark"]["name"].empty?
+      @figure.landmarks << Landmark.find_or_create_by(params["landmark"])
     end
     @figure.save
 
@@ -53,7 +53,9 @@ class FiguresController < ApplicationController
   patch '/figures/:id' do
     @figure = Figure.find(params[:id])
     @figure.titles.clear
-    @figure.landmkars.clear
+    @figure.landmarks.clear
+
+    @figure.name = params["figure"]["name"]
 
     if !!params["figure"]["title_ids"]
       params["figure"]["title_ids"].each do |title_id|
@@ -61,8 +63,8 @@ class FiguresController < ApplicationController
       end
     end
 
-    if !params["title"].empty?
-      @figure.titles << Title.new(params["title"])
+    if !params["title"]["name"].empty?
+      @figure.titles << Title.find_or_create_by(params["title"])
     end
 
 
@@ -72,8 +74,8 @@ class FiguresController < ApplicationController
       end
     end
 
-    if !params["landmark"].empty?
-      @figure.landmarks << Landmark.new(params["landmark"])
+    if !params["landmark"]["name"].empty?
+      @figure.landmarks << Landmark.find_or_create_by(params["landmark"])
     end
 
     @figure.save

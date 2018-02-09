@@ -53,7 +53,7 @@ class FiguresController < ApplicationController
   patch '/figures/:id' do
     @figure = Figure.find(params[:id])
     @figure.titles.clear
-    @figure.landmkars.clear
+    @figure.landmarks.clear
 
     if !!params["figure"]["title_ids"]
       params["figure"]["title_ids"].each do |title_id|

@@ -55,6 +55,8 @@ class FiguresController < ApplicationController
     @figure.titles.clear
     @figure.landmarks.clear
 
+    @figure.name = params["figure"]["name"]
+
     if !!params["figure"]["title_ids"]
       params["figure"]["title_ids"].each do |title_id|
         @figure.titles << Title.find(title_id)
